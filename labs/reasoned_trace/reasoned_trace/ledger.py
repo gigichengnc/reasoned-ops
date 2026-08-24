@@ -11,7 +11,6 @@ from hashlib import sha256
 from typing import Any
 from uuid import uuid4
 
-
 GENESIS_HASH = "0" * 64
 
 
