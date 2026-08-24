@@ -2,13 +2,13 @@
 
 from __future__ import annotations
 
-from pathlib import Path
 import sys
+from pathlib import Path
 
 LAB_ROOT = Path(__file__).resolve().parent
 sys.path.insert(0, str(LAB_ROOT))
 
-from reasoned_trace import EventLedger, unified_text_diff  # noqa: E402
+from reasoned_trace import EventLedger, unified_text_diff
 
 
 def main() -> None:
