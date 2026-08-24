@@ -1,13 +1,13 @@
 from __future__ import annotations
 
+import sys
 from dataclasses import replace
 from pathlib import Path
-import sys
 
 LAB_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(LAB_ROOT))
 
-from reasoned_trace import EventLedger, unified_text_diff  # noqa: E402
+from reasoned_trace import EventLedger, unified_text_diff
 
 
 def test_human_override_preserves_model_proposal() -> None:
