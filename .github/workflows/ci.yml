@@ -32,6 +32,9 @@ jobs:
       - name: Test
         run: pytest -q
 
+      - name: ReasonedTrace lab test
+        run: pytest -q labs/reasoned_trace/tests
+
       - name: Routing evaluation smoke test
         run: reasoned-evaluate --json > /tmp/reasoned-routing-evaluation.json
 
