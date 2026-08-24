@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
+import json
+from collections.abc import Iterable
 from dataclasses import asdict, dataclass
 from datetime import UTC, datetime
 from difflib import unified_diff
 from hashlib import sha256
-import json
-from typing import Any, Iterable
+from typing import Any
 from uuid import uuid4
 
 
@@ -86,7 +87,7 @@ class EventLedger:
             "actor_version": actor_version,
             "event_type": event_type,
             "timestamp": timestamp or datetime.now(UTC).isoformat(),
-            "payload": payload,
+            "payload": _json_snapshot(payload),
             "previous_event_hash": previous_hash,
         }
         digest = _hash_payload(raw)
@@ -182,6 +183,10 @@ def _canonical_json(data: dict[str, Any]) -> str:
         )
     except (TypeError, ValueError) as exc:
         raise ValueError("event payload must be JSON-serializable") from exc
+
+
+def _json_snapshot(data: dict[str, Any]) -> dict[str, Any]:
+    return json.loads(_canonical_json(data))
 
 
 def _hash_payload(data: dict[str, Any]) -> str:
